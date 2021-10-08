@@ -1,4 +1,4 @@
-const Recipe = require('../models')
+const { Recipe } = require('../models')
 
 // exporting routes, routes expect app to be passed
 module.exports = app => {
@@ -23,8 +23,8 @@ module.exports = app => {
       })
   })
   // GET one
-  app.get('/recipe/:id', (req, res) => {
-    Recipe.findAll({
+  app.get('/getRecipe/:id', (req, res) => {
+    Recipe.findOne({
       where: { id: req.params.id }
     })
       .then(recipe => {

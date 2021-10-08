@@ -5,14 +5,16 @@ module.exports = (sequelize, Sequelize) => {
   // Defining necissary columns
   Recipe.init({
     id: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.UUID,
+      defaultValue: Sequelize.UUIDV4,
+      allowNull: false,
       primaryKey: true
     },
     title: Sequelize.STRING,
     directions: Sequelize.STRING
   }, {
     sequelize,
-    tableName: 'recipetbl'
+    modelName: 'recipe'
   })
 
   return Recipe
