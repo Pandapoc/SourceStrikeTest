@@ -1,4 +1,5 @@
 const { Recipe } = require('../models')
+const { Op } = require('sequelize')
 
 // exporting routes, routes expect app to be passed
 module.exports = app => {
@@ -26,6 +27,23 @@ module.exports = app => {
   app.get('/getRecipe/:id', (req, res) => {
     Recipe.findOne({
       where: { id: req.params.id }
+    })
+      .then(recipe => {
+        res.json(recipe)
+      })
+      .catch(e => {
+        res.sendStatus(500)
+        console.log(e)
+      })
+  })
+  // GET one
+  app.get('/findRecipe/:word', (req, res) => {
+    Recipe.findOne({
+      where: {
+        title: {
+          [Op.like]: `%${req.params.word}%`
+        }
+      }
     })
       .then(recipe => {
         res.json(recipe)
