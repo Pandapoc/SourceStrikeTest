@@ -3,7 +3,7 @@ const { Recipe } = require('../models')
 // exporting routes, routes expect app to be passed
 module.exports = app => {
   // GET all
-  app.get('/recipe', (req, res) => {
+  app.get('/recipes', (req, res) => {
     Recipe.findAll()
       .then(recipe => {
         res.json(recipe)
